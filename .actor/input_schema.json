@@ -1,0 +1,79 @@
+{
+    "title": "Rank Tracker",
+    "description": "Check where a domain ranks for a keyword. Each keyword is searched once per run, through Apify's Google SERP proxy.",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "keywords": {
+            "title": "Keywords",
+            "type": "array",
+            "description": "Keywords to check. Each row is one keyword, the domain you want to find, a country, and desktop or mobile.",
+            "editor": "schemaBased",
+            "minItems": 1,
+            "default": [
+                {
+                    "keyword": "apify google serp proxy cheerio crawler example",
+                    "domain": "docs.apify.com",
+                    "location": "United States",
+                    "device": "desktop"
+                }
+            ],
+            "prefill": [
+                {
+                    "keyword": "apify google serp proxy cheerio crawler example",
+                    "domain": "docs.apify.com",
+                    "location": "United States",
+                    "device": "desktop"
+                }
+            ],
+            "items": {
+                "type": "object",
+                "properties": {
+                    "keyword": {
+                        "title": "Keyword",
+                        "type": "string",
+                        "description": "The search query to look up.",
+                        "editor": "textfield",
+                        "minLength": 1
+                    },
+                    "domain": {
+                        "title": "Domain",
+                        "type": "string",
+                        "description": "Hostname to find in the organic results, such as docs.apify.com. www is ignored.",
+                        "editor": "textfield",
+                        "minLength": 1
+                    },
+                    "location": {
+                        "title": "Location",
+                        "type": "string",
+                        "description": "Country for the results, such as United States or United Kingdom.",
+                        "editor": "textfield",
+                        "default": "United States",
+                        "prefill": "United States"
+                    },
+                    "device": {
+                        "title": "Device",
+                        "type": "string",
+                        "description": "Desktop or mobile results. The request uses a matching user agent.",
+                        "editor": "select",
+                        "enum": ["desktop", "mobile"],
+                        "enumTitles": ["Desktop", "Mobile"],
+                        "default": "desktop",
+                        "prefill": "desktop"
+                    }
+                },
+                "required": ["keyword", "domain"]
+            }
+        },
+        "maxPages": {
+            "title": "Pages per keyword",
+            "type": "integer",
+            "description": "How many result pages to check for each keyword. A page is about 10 organic results and one SERP request. The check stops early when the domain is found. The default is one page.",
+            "default": 1,
+            "prefill": 1,
+            "minimum": 1,
+            "maximum": 10
+        }
+    },
+    "required": ["keywords"]
+}

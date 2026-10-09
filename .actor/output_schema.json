@@ -1,0 +1,11 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "title": "Output schema of the Rank Tracker",
+    "properties": {
+        "results": {
+            "type": "string",
+            "title": "Keyword positions",
+            "template": "{{links.apiDefaultDatasetUrl}}/items"
+        }
+    }
+}

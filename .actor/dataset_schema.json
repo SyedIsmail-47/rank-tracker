@@ -1,0 +1,136 @@
+{
+    "actorSpecification": 1,
+    "title": "Keyword positions",
+    "description": "One record per keyword checked in this run.",
+    "fields": {
+        "type": "object",
+        "properties": {
+            "keyword": {
+                "type": "string",
+                "title": "Keyword",
+                "description": "The search query that was checked."
+            },
+            "domain": {
+                "type": "string",
+                "title": "Domain",
+                "description": "Hostname the check looked for."
+            },
+            "location": {
+                "type": "string",
+                "title": "Location",
+                "description": "Country the results were requested for."
+            },
+            "device": {
+                "type": "string",
+                "title": "Device",
+                "description": "Desktop or mobile.",
+                "enum": ["desktop", "mobile"]
+            },
+            "position": {
+                "type": ["integer", "null"],
+                "title": "Position",
+                "description": "Organic position of the domain, starting at 1. Empty when the domain was not in the pages checked."
+            },
+            "rankingUrl": {
+                "type": ["string", "null"],
+                "title": "Ranking URL",
+                "description": "The organic result URL for the domain. Empty when the domain was not found."
+            },
+            "serpFeatures": {
+                "type": "object",
+                "title": "SERP features",
+                "description": "Which features were present on the first results page.",
+                "properties": {
+                    "featuredSnippet": {
+                        "type": "boolean",
+                        "title": "Featured snippet"
+                    },
+                    "localPack": {
+                        "type": "boolean",
+                        "title": "Local pack"
+                    },
+                    "peopleAlsoAsk": {
+                        "type": "boolean",
+                        "title": "People Also Ask"
+                    },
+                    "imagePack": {
+                        "type": "boolean",
+                        "title": "Image pack"
+                    },
+                    "video": {
+                        "type": "boolean",
+                        "title": "Video"
+                    },
+                    "shopping": {
+                        "type": "boolean",
+                        "title": "Shopping"
+                    },
+                    "ads": {
+                        "type": "boolean",
+                        "title": "Ads"
+                    }
+                }
+            },
+            "pagesChecked": {
+                "type": "integer",
+                "title": "Pages checked",
+                "description": "How many result pages were parsed for this keyword."
+            }
+        }
+    },
+    "views": {
+        "overview": {
+            "title": "Positions",
+            "description": "One row per keyword checked in this run.",
+            "transformation": {
+                "fields": [
+                    "keyword",
+                    "domain",
+                    "position",
+                    "rankingUrl",
+                    "location",
+                    "device",
+                    "serpFeatures",
+                    "pagesChecked"
+                ]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "keyword": {
+                        "label": "Keyword",
+                        "format": "text"
+                    },
+                    "domain": {
+                        "label": "Domain",
+                        "format": "text"
+                    },
+                    "position": {
+                        "label": "Position",
+                        "format": "number"
+                    },
+                    "rankingUrl": {
+                        "label": "Ranking URL",
+                        "format": "link"
+                    },
+                    "location": {
+                        "label": "Location",
+                        "format": "text"
+                    },
+                    "device": {
+                        "label": "Device",
+                        "format": "text"
+                    },
+                    "serpFeatures": {
+                        "label": "SERP features",
+                        "format": "object"
+                    },
+                    "pagesChecked": {
+                        "label": "Pages checked",
+                        "format": "number"
+                    }
+                }
+            }
+        }
+    }
+}
